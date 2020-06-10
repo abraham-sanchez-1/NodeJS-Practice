@@ -1,9 +1,11 @@
-const validator = require('validator')
+const chalk = require('chalk')
 
 const myNotes = require('./notes')
 
+const importantGreen = chalk.green.inverse.bold
+
 const msg = myNotes()
 
-console.log(myNotes())
+console.log(msg)
 
-console.log(validator.isURL('htp/example.com'))
+console.log(importantGreen('Success!')) 

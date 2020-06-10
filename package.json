@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/abraham-sanchez-1/NodeJS-NoteAppPractice#readme",
   "dependencies": {
+    "chalk": "^2.4.1",
     "validator": "^10.8.0"
   }
 }
