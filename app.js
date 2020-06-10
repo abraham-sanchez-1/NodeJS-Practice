@@ -3,15 +3,27 @@ const yargs = require('yargs')
 const myNotes = require('./notes')
 
 //Customized yargs vesion
-
 yargs.version('1.1.0')
 
 //Create add command
 yargs.command({
     command: 'add',
     describe: 'Add a new note',
-    handler: function() {
-        console.log('Adding new note!')
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        },
+        body: {
+            describe: 'Body of note',
+            demandOption: true,
+            type: 'string',
+        }
+    },
+    handler: function(argv) {
+        console.log('Title: ' + argv.title)
+        console.log('Body: ' + argv.body)
     }
 })
 
@@ -38,12 +50,14 @@ yargs.command({
 //Create read command
 yargs.command({
     command: 'read',
-    describe: 'Reading notes',
+    describe: 'Read a note',
     handler: function() {
-        console.log('Reading notes!')
+        console.log('Reading a note!')
     }
 })
 
 //add, remove, list, read
 
-console.log(yargs.argv)
+yargs.parse()
+
+//console.log(yargs.argv)
