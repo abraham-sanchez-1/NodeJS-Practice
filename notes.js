@@ -3,11 +3,13 @@ const fs = require('fs')
 
 const success = chalk.green.inverse
 const error = chalk.red.inverse
-
+const title = chalk.blue.inverse
 
 const getNotes = () => {
     return "Your notes..."
 }
+
+
  
 const addNote = (title, body) => {
     const notes = loadNotes()
@@ -45,6 +47,18 @@ const removeNote = (title) => {
     
 }
 
+const listNotes = () => {
+    const notes = loadNotes()
+    if (notes.length === 0) {
+        console.log(error('There are no notes!'))
+    } else {
+        console.log('Your notes below!')
+        notes.forEach(note => {
+            console.log(title(note.title))
+        });
+    }
+}
+
 const saveNotes = (notes) => {
     const dataJSON = JSON.stringify(notes)
     fs.writeFileSync('notes.json', dataJSON)
@@ -65,5 +79,6 @@ const loadNotes = () => {
 module.exports = {
     getNotes: getNotes,
     addNote: addNote,
-    removeNote: removeNote
+    removeNote: removeNote,
+    listNotes: listNotes
 }
