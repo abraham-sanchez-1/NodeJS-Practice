@@ -1,5 +1,0 @@
-const weatherKey = dsf;
-
-module.exports = {
-    readNote: readNote,
-}
