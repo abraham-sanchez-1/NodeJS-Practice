@@ -1,9 +1,15 @@
 const request = require('request')
 const secrets = require('../secrets')
 
-const url = 'http://api.weatherstack.com/current?access_key=' + secrets.weatherStackKey + '&query=43.0389,-87.9065'
+const mkeCoordinates = '43.0389,-87.9065'
 
-request({url: url}, (error, response) => {
-    const data = JSON.parse(response.body)
-    console.log(data.current)
+const url = 'http://api.weatherstack.com/current?access_key=' + secrets.weatherStackKey + '&query='+ mkeCoordinates+'&units=f'
+
+request({url: url, json: true}, (error, response) => {
+    // console.log(response.body.current)
+
+    console.log(response.body.current.weather_descriptions[0] + '. It is currently: ' + response.body.current.temperature +' degrees.')
+    console.log('It feels like: ' + response.body.current.feelslike +' degrees.')
 })
+
+
