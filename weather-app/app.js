@@ -24,10 +24,16 @@ request({url: weatherURL, json: true}, (error, response) => {
 
 
 //GEOCODING
-// request({url: geoCodingURL, json: true}, (error, response) => {
-//     const latidude = response.body.features[0].center[1]
-//     const longitude = response.body.features[0].center[0]
-//     console.log('Latitude is: ' + latidude + '   Longitude is: ' + longitude)
-// })
+request({url: geoCodingURL, json: true}, (error, response) => {
+    if(error){
+        console.log('Unable to connect to geocoding service!')
+    } else if(response.body.features.length === 0){
+        console.log('Unable to find user input location. Try a different search.')
+    } else{
+        const latidude = response.body.features[0].center[1]
+        const longitude = response.body.features[0].center[0]
+        console.log('Latitude is: ' + latidude + '   Longitude is: ' + longitude)
+    }
+    })
 
 
