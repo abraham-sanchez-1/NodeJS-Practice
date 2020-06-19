@@ -9,13 +9,21 @@ const weatherURL = 'http://api.weatherstack.com/current?access_key=' + secrets.w
 const geoCodingURL = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+ searchLocation+'.json?access_token='+ secrets.mapBoxKey +'&limit=1'
 
 geocode('Milwaukee', (error, data) => {
-    console.log('Error', error)
-    console.log('Data', data)
+    if(error){
+        return console.log(error)
+    }
+
+    forecast(data.latitude, data.longitude, (error, forecastData) => {
+        if(error){
+            return console.log(error)
+        }
+
+        console.log(data.location)
+        console.log(forecastData)
+
+      })
 })
 
 
-forecast(44.1545,-75.7088, (error, data) => {
-    console.log('Error', error)
-    console.log('Data', data)
-  })
+
 
